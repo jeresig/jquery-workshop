@@ -16,9 +16,8 @@
 		</ul>
 	</div>
 	<div class="slide">
-		<h1>Ideal for Prototyping</h1>
+		<h1>Completely Unobtrusive</h1>
 		<ul>
-			<li>Completely unobtrusive</li>
 			<li>Uses CSS to layer functionality</li>
 			<li>Easy to separate behavior</li>
 			<li>Quick, terse, syntax</li>
@@ -26,7 +25,7 @@
 	</div>
 	<div class="slide">
 		<h1>The Focus of jQuery</h1>
-		<pre class="javascript large">jQuery("div").addClass("special");</pre>
+		<pre class="javascript large">$("div").addClass("special");</pre>
 		<ul>
 			<li>Find Some Elements</li>
 			<li>Do Something With Them</li>
@@ -34,9 +33,9 @@
 	</div>
 	<div class="slide">
 		<h1>The Focus of jQuery</h1>
-		<pre class="javascript large">jQuery("div").addClass("special");</pre>
+		<pre class="javascript large">$("div").addClass("special");</pre>
 		<ul>
-			<li>jQuery is the jQuery Object</li>
+			<li>$ is the jQuery Object (also named 'jQuery')</li>
 			<li>"div" finds some elements using CSS selectors</li>
 			<li>.addClass(...) modifies all the divs</li>
 		</ul>
@@ -82,8 +81,8 @@
 			div.sample h2 { font-weight: bold; }
 		</style>
 		<script>
-		jQuery("#selectors form").submit(function(){
-			var selector = jQuery("#selector").val();
+		$("#selectors form").submit(function(){
+			var selector = $("#selector").val();
 			
 			$("#selectors pre, #selectors div.sample")
 				.find("*").removeClass("found").end()
@@ -104,7 +103,7 @@
 	</div>
 	<div class="slide" id="after">
 		<h1>Manipulation - .after()</h1>
-		<pre class="javascript">jQuery("a[target=_blank]")
+		<pre class="javascript">$("a[target=_blank]")
   .after("&lt;img src='open.png'/>");</pre>
 		<ul>
 			<li><button class="run">Run</button></li>
@@ -115,7 +114,7 @@
 	</div>
 	<div class="slide" id="css">
 		<h1>Manipulation - .css()</h1>
-		<pre class="javascript">jQuery("a").css({
+		<pre class="javascript">$("a").css({
   color: "red",
   fontWeight: "bold"
 });</pre>
@@ -128,9 +127,9 @@
 	</div>	
 	<div class="slide" id="submit">
 		<h1>Interaction - .submit()</h1>
-		<pre class="javascript run">jQuery("form").submit(function(){
-  if ( jQuery("#name").val() == "" ) {
-    jQuery("span.help").show();
+		<pre class="javascript run">$("form").submit(function(){
+  if ( $("#name").val() == "" ) {
+    $("span.help").show();
     return false;
   }
 });</pre>
@@ -142,8 +141,8 @@
 	</div>
 	<div class="slide" id="click">
 		<h1>Interaction - .click()</h1>
-		<pre class="javascript run">jQuery("a.menu").click(function(){
-  jQuery(this).next().toggle();
+		<pre class="javascript run">$("a.menu").click(function(){
+  $(this).next().toggle();
   return false;
 });</pre>
 		<ul>
@@ -153,8 +152,8 @@
 	</div>
 	<div class="slide" id="slideToggle">
 		<h1>Animation - .slideToggle()</h1>
-		<pre class="javascript run">jQuery("a.menu").click(function(){
-  jQuery(this).next().slideToggle("slow");
+		<pre class="javascript run">$("a.menu").click(function(){
+  $(this).next().slideToggle("slow");
   return false;
 });</pre>
 		<ul>
@@ -166,7 +165,7 @@
 	</div>
 	<div class="slide" id="animate">
 		<h1>Animation - .animate()</h1>
-		<pre class="javascript">jQuery("div.block").animate({
+		<pre class="javascript">$("div.block").animate({
   fontSize: "2em",
   width: "+=20%",
   backgroundColor: "green"
@@ -179,8 +178,8 @@
 	</div>
 	<div class="slide" id="hideshow">
 		<h1>Animation - .hide()/.show()</h1>
-		<pre class="javascript">jQuery("div.block").hide("slow", function(){
-  jQuery(this).show("slow");
+		<pre class="javascript">$("div.block").hide("slow", function(){
+  $(this).show("slow");
 });</pre>
 		<ul>
 			<li><button class="run">Run</button></li>
@@ -190,7 +189,7 @@
 	</div>
 	<div class="slide" id="load">
 		<h1>Ajax - .load()</h1>
-		<pre class="javascript">jQuery("div.load").load("file.html");</pre>
+		<pre class="javascript">$("div.load").load("file.html");</pre>
 		<ul>
 			<li><button class="run">Run</button></li>
 		</ul>
@@ -199,7 +198,7 @@
 	</div>
 	<div class="slide" id="load2">
 		<h1>Ajax - .load()</h1>
-		<pre class="javascript">jQuery("div.load").load("file.html h2");</pre>
+		<pre class="javascript">$("div.load").load("file.html h2");</pre>
 		<ul>
 			<li><button class="run">Run</button></li>
 		</ul>
@@ -211,13 +210,13 @@
 		<ul>
 			<li>You can have multiple actions against a single set of elements</li>
 		</ul>
-		<pre class="javascript large">jQuery("div").hide();
-jQuery("div").hide().css("color","blue");
-jQuery("div").hide().css("color","blue").remove();</pre>
+		<pre class="javascript large">$("div").hide();
+$("div").hide().css("color","blue");
+$("div").hide().css("color","blue").remove();</pre>
 	</div>
 	<div class="slide" id="html">
 		<h1>HTML Selector</h1>
-		<pre class="javascript">jQuery("&lt;li>&lt;a>&lt;/a>&lt;/li>")
+		<pre class="javascript">$("&lt;li>&lt;a>&lt;/a>&lt;/li>")
   .find("a")
     .attr("href", "http://ejohn.org/")
     .html("John Resig")
