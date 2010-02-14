@@ -1,0 +1,58 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+html, body, input {
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 1.5em;
+}
+
+div.slide {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+div.slide h1 {
+	margin: 0;
+	padding: 0.5em;
+}
+
+div.slide ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+div.slide li {
+	margin: 0.5em;
+	padding: 0 0.5em;
+	line-height: 1.25em;
+}
+
+pre {
+	font-family: Monaco, Courier New;
+	margin: 0 1em;
+	padding: 0.5em;
+	font-size: 0.8em;
+}
+
+pre.javascript {
+	background: #000;
+}
+
+pre.stocky {
+	width: 50%;
+	float: left;
+}
+
+a {
+	color: black;
+}
+
+input[type=text] {
+	width: 400px;
+}

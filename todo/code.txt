@@ -1,0 +1,43 @@
+jQuery.fn.slideRemove = function( callback ) {
+	return this.slideUp("slow", function(){
+		$(this).remove();
+		callback();
+	});
+};
+
+$(document).ready(function(){
+	$("ul").sortable({
+		stop: function(){
+			save();
+		}
+	});
+
+	$("li").live("dblclick", function(){
+		$(this).slideRemove( save );
+	});
+
+	$("#item").val("Add an item...");
+	
+	$("#item").one("focus", function(){
+		$(this).val('');
+	});
+	
+	$("#form").submit(function(){
+		var val = $("#item").val();
+		$("ul").append("<li>" + val + "</li>");
+		$("#item").attr("value", "").focus();
+		save();
+		return false;
+	});
+	
+	function save(){
+		var items = $("li").map(function(){
+			return $(this).text();
+		}).get();
+
+		$.ajax({
+			url: "index.php",
+			data: { items: items }
+		});
+	}
+});

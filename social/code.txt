@@ -1,0 +1,79 @@
+$(document).ready(function(){
+
+  function init(){
+    $("<a href='' class='remove'>Remove Friend</a>")
+      .replaceAll("input.remove");
+    
+    $("a.remove").button({
+      icons: { primary: "ui-icon-close" }
+    });
+    
+    $("a.send").button({
+      icons: { primary: "ui-icon-comment" }
+    });
+    
+    $("span.line").remove();
+    
+    $("#friends li").addClass("ui-widget-content ui-corner-all");
+  }
+  
+  init();
+  
+  $("a.send").live("click", function(){
+    $("#dialog").load( this.href, function() {
+      $(this).find(":submit").remove();
+      $(this).dialog('open');
+      $(this).find("textarea").focus();
+    });
+    
+    return false;
+  });
+
+  $("a.remove").live("click", function(){
+    $(this).parent().ajaxSubmit(function(){
+      $(this).parent().slideUp("slow", function(){
+        $(this).remove();
+      });
+    });
+    
+    return false;
+  });
+  
+  $("#main > b").remove();
+  
+  $("#dialog").dialog({
+    autoOpen: false,
+    modal: true,
+    buttons: {
+      "Send Message": function(){
+        $(this).find("form").ajaxSubmit(function(){
+          $("#dialog").dialog("close");
+        });
+      }
+    }
+  });
+
+  $("#main").tabs({
+    remote: true,
+    fx: { height: "toggle" },
+    load: function(e){
+      var form = $("form").ajaxForm({
+        beforeSend: function(){
+          form
+            .append("<img src='loading.gif'/>")
+            .find(":submit").attr("disabled", "disabled");
+        },
+        success: function(){
+          form
+            .find("img").remove().end()
+            .find(":submit").attr("disabled", "");
+    
+          $("#friends").load("./ ul:last",function(){
+            init();
+            $("#main").tabs("select", 0);
+          });
+        }
+      });
+    }
+  });  
+});

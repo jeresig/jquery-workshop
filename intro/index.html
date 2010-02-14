@@ -1,0 +1,231 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="recipes.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="jquery.chili.js"></script>
+	<script src="jquery.color.js"></script>
+	<script src="recipes.js"></script>
+	<script src="slideshow.js"></script>
+</head>
+<body>
+	<div class="slide">
+		<h1>What is jQuery?</h1>
+		<ul>
+			<li>An open source JavaScript library that simplifies the interaction between HTML and JavaScript.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Ideal for Prototyping</h1>
+		<ul>
+			<li>Completely unobtrusive</li>
+			<li>Uses CSS to layer functionality</li>
+			<li>Easy to separate behavior</li>
+			<li>Quick, terse, syntax</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>The Focus of jQuery</h1>
+		<pre class="javascript large">jQuery("div").addClass("special");</pre>
+		<ul>
+			<li>Find Some Elements</li>
+			<li>Do Something With Them</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>The Focus of jQuery</h1>
+		<pre class="javascript large">jQuery("div").addClass("special");</pre>
+		<ul>
+			<li>jQuery is the jQuery Object</li>
+			<li>"div" finds some elements using CSS selectors</li>
+			<li>.addClass(...) modifies all the divs</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Find Some Elements</h1>
+		<ul>
+			<li>Full CSS Selector 1-3 Support</li>
+			<li>Better CSS Selector support than most browsers</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Find Some Elements</h1>
+		<div id="selectors" class="misc">
+			<form>
+				<ul>
+				<li>Selector: <input type="text" id="selector" value="div"/>
+				<input type="submit" value="Run"/></li>
+				</ul>
+			</form>
+		<pre class="stocky"><div id="body"><span>&lt;div id="body"></span>
+  <h2><span>&lt;h2>Some Header&lt;/h2></span></h2>
+  <div class="contents"><span>&lt;div class="contents"></span>
+    <p><span>&lt;p></span>Paragraph 1<span>&lt;/p></span></p>
+    <p><span>&lt;p></span>Paragraph 2<span>&lt;/p></span></p>
+  <span>&lt;/div></span></div>
+<span>&lt;/div></span></div></pre>
+			<div class="sample">
+			<div id="body">
+				<h2>Some Header</h2>
+				<div class="contents">
+					<p>Paragraph 1</p>
+					<p>Paragraph 2</p>
+				</div>
+			</div>
+			</div>
+		</div>
+		<style>
+			pre .found > span { color: red; }
+			pre.stocky * { margin: 0; padding: 0; font-weight: normal; display: inline; white-space: pre; font-size: 1em; }
+			div.sample .found { outline: 3px solid red; }
+			div.sample { width: 30%; float: left; }
+			div.sample h2 { font-weight: bold; }
+		</style>
+		<script>
+		jQuery("#selectors form").submit(function(){
+			var selector = jQuery("#selector").val();
+			
+			$("#selectors pre, #selectors div.sample")
+				.find("*").removeClass("found").end()
+				.find(selector).addClass("found");
+				
+			return false;
+		});
+		</script>
+	</div>
+	<div class="slide">
+		<h1>Do something with them</h1>
+		<ul>
+			<li>Manipulation (append, prepend, remove)</li>
+			<li>Interaction (click, hover, toggle)</li>
+			<li>Animations (hide, show, slideDown, fadeOut)</li>
+			<li>Ajax (load, get, post)</li>
+		</ul>
+	</div>
+	<div class="slide" id="after">
+		<h1>Manipulation - .after()</h1>
+		<pre class="javascript">jQuery("a[target=_blank]")
+  .after("&lt;img src='open.png'/>");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li><a href="http://google.com/" target="_blank">Google</a></li>
+			<li><a href="http://microsoft.com/">Microsoft</a></li>
+			<li><a href="http://yahoo.com/" target="_blank">Yahoo</a></li>
+		</ul>
+	</div>
+	<div class="slide" id="css">
+		<h1>Manipulation - .css()</h1>
+		<pre class="javascript">jQuery("a").css({
+  color: "red",
+  fontWeight: "bold"
+});</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li><a href="http://google.com/" target="_blank">Google</a></li>
+			<li><a href="http://microsoft.com/">Microsoft</a></li>
+			<li><a href="http://yahoo.com/" target="_blank">Yahoo</a></li>
+		</ul>
+	</div>	
+	<div class="slide" id="submit">
+		<h1>Interaction - .submit()</h1>
+		<pre class="javascript run">jQuery("form").submit(function(){
+  if ( jQuery("#name").val() == "" ) {
+    jQuery("span.help").show();
+    return false;
+  }
+});</pre>
+		<ul>
+			<li><form>Name: <input type="text" id="name"/>
+			<input type="submit" value="Send"/></form></li>
+			<li><span class="help" style="display:none;color:red;">Please enter your name!</span></li>
+		</ul>
+	</div>
+	<div class="slide" id="click">
+		<h1>Interaction - .click()</h1>
+		<pre class="javascript run">jQuery("a.menu").click(function(){
+  jQuery(this).next().toggle();
+  return false;
+});</pre>
+		<ul>
+			<li><a href="" class="menu">Menu A</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+			<li><a href="" class="menu">Menu B</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+		</ul>
+	</div>
+	<div class="slide" id="slideToggle">
+		<h1>Animation - .slideToggle()</h1>
+		<pre class="javascript run">jQuery("a.menu").click(function(){
+  jQuery(this).next().slideToggle("slow");
+  return false;
+});</pre>
+		<ul>
+			<li><a href="" class="menu">Menu A</a> <ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
+			<li><a href="" class="menu">Menu B</a> <ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
+		</ul>
+		<style>ul.menu { display:none;margin:0;padding:0; }
+		ul.menu li { margin: 0; }</style>
+	</div>
+	<div class="slide" id="animate">
+		<h1>Animation - .animate()</h1>
+		<pre class="javascript">jQuery("div.block").animate({
+  fontSize: "2em",
+  width: "+=20%",
+  backgroundColor: "green"
+});</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+		<div class="block">hello!</div>
+		<style>div.block { margin-left: 36px; width: 100px; height: 100px; background: red; }</style>
+	</div>
+	<div class="slide" id="hideshow">
+		<h1>Animation - .hide()/.show()</h1>
+		<pre class="javascript">jQuery("div.block").hide("slow", function(){
+  jQuery(this).show("slow");
+});</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+		<div class="block">hello!</div>
+		<style>div.block { margin-left: 36px; width: 100px; height: 100px; background: red; }</style>
+	</div>
+	<div class="slide" id="load">
+		<h1>Ajax - .load()</h1>
+		<pre class="javascript">jQuery("div.load").load("file.html");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+		<div class="load">hello!</div>
+		<style>div.load { margin-left: 36px;}</style>
+	</div>
+	<div class="slide" id="load2">
+		<h1>Ajax - .load()</h1>
+		<pre class="javascript">jQuery("div.load").load("file.html h2");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+		<div class="load">hello!</div>
+		<style>div.load { margin-left: 36px;}</style>
+	</div>
+	<div class="slide">
+		<h1>Chaining</h1>
+		<ul>
+			<li>You can have multiple actions against a single set of elements</li>
+		</ul>
+		<pre class="javascript large">jQuery("div").hide();
+jQuery("div").hide().css("color","blue");
+jQuery("div").hide().css("color","blue").remove();</pre>
+	</div>
+	<div class="slide" id="html">
+		<h1>HTML Selector</h1>
+		<pre class="javascript">jQuery("&lt;li>&lt;a>&lt;/a>&lt;/li>")
+  .find("a")
+    .attr("href", "http://ejohn.org/")
+    .html("John Resig")
+  .end()
+  .appendTo("ul");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+	</div>
+</body>
+</html>
