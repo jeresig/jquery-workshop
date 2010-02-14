@@ -60,7 +60,7 @@ $(document).ready(function(){
       var form = $("form").ajaxForm({
         beforeSend: function(){
           form
-            .append("<img src='loading.gif'/>")
+            .append("<img src='../js/loading.gif'/>")
             .find(":submit").attr("disabled", "disabled");
         },
         success: function(){
