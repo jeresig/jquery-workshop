@@ -71,4 +71,10 @@ img.logo {
 	bottom: 0;
 	right: 0;
 	width: 100px;
+	border: 0;
+}
+
+div.slide.main {
+	background: #1E2837;
+	text-align: center;
 }
