@@ -1,0 +1,1 @@
+{"name": "John Resig", "file": "jquery.js"}

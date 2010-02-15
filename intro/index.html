@@ -1,5 +1,6 @@
 <html>
 <head>
+	<title>Introduction to jQuery</title>
 	<link rel="stylesheet" href="style.css"/>
 	<link rel="stylesheet" href="recipes.css"/>
 	<script src="../js/jquery.js"></script>
@@ -13,42 +14,92 @@
 		<h1>What is jQuery?</h1>
 		<ul>
 			<li>An open source JavaScript library that simplifies the interaction between HTML and JavaScript.</li>
+			<li>Created by John Resig in 2005, released in January of 2006.</li>
+			<li>Built in an attempt to simplify the existing DOM APIs and abstract away cross-browser issues.</li>
 		</ul>
 	</div>
 	<div class="slide">
-		<h1>Completely Unobtrusive</h1>
+		<h1>Why jQuery?</h1>
 		<ul>
-			<li>Uses CSS to layer functionality</li>
-			<li>Easy to separate behavior</li>
-			<li>Quick, terse, syntax</li>
+			<li>Fully documented.</li>
+			<li>Great community.</li>
+			<li>Tons of plugins.</li>
+			<li>Small size (23kb)</li>
+			<li>Everything works in IE 6+, Firefox 2+, Safari 3+, Chrome, and Opera 9+</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Who uses jQuery?</h1>
+		<ul>
+			<li>Microsoft, Google, Mozilla, IBM, Amazon, HP, Intel.</li>
+			<li>Ruby on Rails, Wordpress, Django, Drupal, CakePHP, ASP.NET MVC.</li>
+			<li>Everyone can agree that jQuery is awesome.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>jQuery is pretty popular.</h1>
+		<ul>
+			<li>26.95% of all sites use jQuery (see Builtwith.com).</li>
+			<li>Google Trends</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Easy to learn and master</h1>
+		<ul>
+			<li>Uses CSS to layer functionality.</li>
+			<li>Easy to separate behavior.</li>
+			<li>Quick, terse, syntax.</li>
 		</ul>
 	</div>
 	<div class="slide">
 		<h1>The Focus of jQuery</h1>
 		<pre class="javascript large">$("div").addClass("special");</pre>
 		<ul>
-			<li>Find Some Elements</li>
-			<li>Do Something With Them</li>
+			<li>Find some elements.</li>
+			<li>Do something with them.</li>
+			<li><small>Note: All jQuery methods, in the examples, are linked to the documentation.</small></li>
 		</ul>
 	</div>
 	<div class="slide">
-		<h1>The Focus of jQuery</h1>
+		<h1>The jQuery Object</h1>
 		<pre class="javascript large">$("div").addClass("special");</pre>
 		<ul>
-			<li>$ is the jQuery Object (also named 'jQuery')</li>
-			<li>"div" finds some elements using CSS selectors</li>
-			<li>.addClass(...) modifies all the divs</li>
+			<li><code>$</code> is the jQuery Object (also named <code>jQuery</code>)</li>
+			<li><code>"div"</code> finds some elements using CSS selectors</li>
+			<li><code>$("div")</code> returns a jQuery set (containing 0 to many DOM nodes).</li>
+			<li><code>addClass(...)</code> modifies all the divs</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Graceful Scripting</h1>
+		<pre class="javascript large">$(".idontexist").addClass("special");</pre>
+		<ul>
+			<li>jQuery will gracefully fail when it can't find anything to run against.</li>
+			<li>Works just like CSS - write your queries to match what you want, doesn't break when nothing is found.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Ready Event</h1>
+		<pre class="javascript large">$(document).ready(function(){
+	// Your jQuery code goes in here
+});</pre>
+		<ul>
+			<li>In order to traverse and manipulate the page we must wait until it's ready to be used.</li>
+			<li>jQuery has a ready event that fires the instant the DOM is ready to be worked with.</li>
+			<li>Stick all your jQuery code in a ready block, load it unobtrusively.</li>
 		</ul>
 	</div>
 	<div class="slide">
 		<h1>Find Some Elements</h1>
 		<ul>
-			<li>Full CSS Selector 1-3 Support</li>
-			<li>Better CSS Selector support than most browsers</li>
+			<li>CSS Selector 1-3 support.</li>
+			<li>Better CSS Selector support than most browsers.</li>
+			<li>Plus a bunch of custom selectors that make life easier.</li>
+			<li>(Such as :first, :last, :has(), :visible, :hidden)</li>
 		</ul>
 	</div>
 	<div class="slide">
-		<h1>Find Some Elements</h1>
+		<h1>Selectors in jQuery</h1>
 		<div id="selectors" class="misc">
 			<form>
 				<ul>
@@ -92,10 +143,42 @@
 		});
 		</script>
 	</div>
+	<div class="slide" id="traverse">
+		<h1>Traversing</h1>
+		<pre class="javascript">$("button").parent().css("border", "3px solid red");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li>Sometimes CSS selectors alone aren't enough.</li>
+			<li>jQuery provides a full suite of methods for walking the DOM tree.</li>
+			<li>.parent(), .next(), .prev(), .children(), .siblings() and many more.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Chaining</h1>
+		<ul>
+			<li>You can have multiple actions against a single set of elements.</li>
+			<li>Every jQuery method returns the jQuery set, for further actions (unless a value is returned).</li>
+		</ul>
+		<pre class="javascript large">$("div").hide();
+$("div").hide().css("color","blue");
+$("div").hide().css("color","blue").remove();</pre>
+	</div>
+	<div class="slide" id="traverse">
+		<h1>Chained Traversal</h1>
+		<pre class="javascript">$("button")
+	.parent().css("border", "3px solid red")
+	.siblings().css("border", "3px solid green");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li>Sometimes CSS selectors alone aren't enough.</li>
+			<li>jQuery provides a full suite of methods for walking the DOM tree.</li>
+			<li>.parent(), .next(), .prev(), .children(), .siblings() and many more.</li>
+		</ul>
+	</div>
 	<div class="slide">
 		<h1>Do something with them</h1>
 		<ul>
-			<li>Manipulation (append, prepend, remove)</li>
+			<li>Manipulation (append, prepend, remove, clone)</li>
 			<li>Interaction (click, hover, toggle)</li>
 			<li>Animations (hide, show, slideDown, fadeOut)</li>
 			<li>Ajax (load, get, post)</li>
@@ -105,6 +188,17 @@
 		<h1>Manipulation - .after()</h1>
 		<pre class="javascript">$("a[target=_blank]")
   .after("&lt;img src='open.png'/>");</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li><a href="http://google.com/" target="_blank">Google</a></li>
+			<li><a href="http://microsoft.com/">Microsoft</a></li>
+			<li><a href="http://yahoo.com/" target="_blank">Yahoo</a></li>
+		</ul>
+	</div>
+	<div class="slide" id="after">
+		<h1>Manipulation - .append()</h1>
+		<pre class="javascript">$("a[target=_blank]")
+  .append(" (Opens in New Window)");</pre>
 		<ul>
 			<li><button class="run">Run</button></li>
 			<li><a href="http://google.com/" target="_blank">Google</a></li>
@@ -126,7 +220,7 @@
 		</ul>
 	</div>	
 	<div class="slide" id="submit">
-		<h1>Interaction - .submit()</h1>
+		<h1>Event - .submit()</h1>
 		<pre class="javascript run">$("form").submit(function(){
   if ( $("#name").val() == "" ) {
     $("span.help").show();
@@ -140,7 +234,7 @@
 		</ul>
 	</div>
 	<div class="slide" id="click">
-		<h1>Interaction - .click()</h1>
+		<h1>Event - .click()</h1>
 		<pre class="javascript run">$("a.menu").click(function(){
   $(this).next().toggle();
   return false;
@@ -150,21 +244,63 @@
 			<li><a href="" class="menu">Menu B</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
 		</ul>
 	</div>
+	<div class="slide" id="hover">
+		<h1>Event - .hover()</h1>
+		<pre class="javascript run">$("li").hover(function(){
+$(this).animate({marginLeft: 38, marginRight: 0});
+}, function(){
+$(this).animate({marginLeft: 18, marginRight: 18});
+});</pre>
+		<style>#hover li { background: #666; }</style>
+		<ul>
+			<li>Hover uses the <code>mouseenter</code> and <code>mouseleave</code> events.</li>
+			<li>These events detect when a user enters or leaves an element.</li>
+			<li>Works better than <code>mouseover</code> and <code>mouseout</code>.</li>
+		</ul>
+	</div>
+	<div class="slide" id="live">
+		<h1>Event Delegation</h1>
+		<ul>
+			<li>Event delegation is an efficient way to watch for an event on a large number of elements.</li>
+			<li>Works by binding to a point farther up the DOM tree and watching for bubbling events.</li>
+			<li>jQuery has two ways to do event delgation: <code>.live()</code> (as a direct replacement for .bind()) and <code>.delegate()</code>.</li>
+			<li><strong>Works on all current, and future, elements.</strong></li>
+		</ul>
+	</div>
+	<div class="slide" id="liveclick">
+		<h1>Live Events</h1>
+		<pre class="javascript run">$("a.menu").live("hover", function(){
+  $(this).next().toggle(200);
+  return false;
+});</pre>
+		<ul>
+			<li><button>Add Menu</button></li>
+			<li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+			<li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+		</ul>
+		<script>
+		jQuery("#liveclick button").click(function(){
+			jQuery("#liveclick > ul").append('<li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>');
+		});
+		</script>
+	</div>
 	<div class="slide" id="slideToggle">
-		<h1>Animation - .slideToggle()</h1>
+		<h1>Effect - .slideToggle()</h1>
 		<pre class="javascript run">$("a.menu").click(function(){
   $(this).next().slideToggle("slow");
   return false;
 });</pre>
 		<ul>
-			<li><a href="" class="menu">Menu A</a> <ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
-			<li><a href="" class="menu">Menu B</a> <ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
+			<li><a href="" class="menu">Menu A</a>
+				<ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
+			<li><a href="" class="menu">Menu B</a>
+				<ul class="menu"><li>Item 1</li><li>Item 2</li></ul></li>
 		</ul>
 		<style>ul.menu { display:none;margin:0;padding:0; }
 		ul.menu li { margin: 0; }</style>
 	</div>
 	<div class="slide" id="animate">
-		<h1>Animation - .animate()</h1>
+		<h1>Effect - .animate()</h1>
 		<pre class="javascript">$("div.block").animate({
   fontSize: "2em",
   width: "+=20%",
@@ -177,7 +313,7 @@
 		<style>div.block { margin-left: 36px; width: 100px; height: 100px; background: red; }</style>
 	</div>
 	<div class="slide" id="hideshow">
-		<h1>Animation - .hide()/.show()</h1>
+		<h1>Effect - .hide()/.show()</h1>
 		<pre class="javascript">$("div.block").hide("slow", function(){
   $(this).show("slow");
 });</pre>
@@ -186,6 +322,33 @@
 		</ul>
 		<div class="block">hello!</div>
 		<style>div.block { margin-left: 36px; width: 100px; height: 100px; background: red; }</style>
+	</div>
+	<div class="slide" id="loadxml">
+		<h1>Ajax - Load XML</h1>
+		<pre class="javascript">$.ajax({
+	url: "file.xml",
+	success: function( xml ) {
+		$(xml).find("tab").each(function(){
+			$("ul").append(
+			  "&lt;li>" + $(this).text() + "&lt;/li>");
+		});
+	}
+});</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
+	</div>
+	<div class="slide" id="getjson">
+		<h1>Ajax - Get JSON</h1>
+		<pre class="javascript">$.getJSON("file.js", function( obj ) {
+	for ( var prop in obj ) {
+		$("ul").append(
+			"&lt;li>" + prop + ": " + obj[prop] + "&lt;/li>");
+	}
+});</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+		</ul>
 	</div>
 	<div class="slide" id="load">
 		<h1>Ajax - .load()</h1>
@@ -205,15 +368,6 @@
 		<div class="load">hello!</div>
 		<style>div.load { margin-left: 36px;}</style>
 	</div>
-	<div class="slide">
-		<h1>Chaining</h1>
-		<ul>
-			<li>You can have multiple actions against a single set of elements</li>
-		</ul>
-		<pre class="javascript large">$("div").hide();
-$("div").hide().css("color","blue");
-$("div").hide().css("color","blue").remove();</pre>
-	</div>
 	<div class="slide" id="html">
 		<h1>HTML Selector</h1>
 		<pre class="javascript">$("&lt;li>&lt;a>&lt;/a>&lt;/li>")
@@ -226,5 +380,120 @@ $("div").hide().css("color","blue").remove();</pre>
 			<li><button class="run">Run</button></li>
 		</ul>
 	</div>
+	<div class="slide">
+		<h1>jQuery Bookmarklet</h1>
+		<ul>
+			<li>Instantly insert jQuery into any page.</li>
+			<li>Great for testing and playing around with the library, especially in Firebug.</li>
+			<li><a href="http://www.learningjquery.com/2009/04/better-stronger-safer-jquerify-bookmarklet">http://www.learningjquery.com/2009/04/better-stronger-safer-jquerify-bookmarklet</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>jQuery Plugins</h1>
+		<ul>
+			<li>jQuery provides a simple, intuitive, format for writing drop-in plugins.</li>
+			<li>All hosted in the jQuery plugin repository: <a href="http://plugins.jquery.com/">http://plugins.jquery.com/</a></li>
+			<li>Thousands of plugins have been written, covering all aspects of web apps.</li>
+			<li>Some good ones: jQuery UI, Validation, Ajax Form, jqGrid, jQuery Tools.</li>
+		</ul>
+	</div>
+	<div class="slide" id="plugin">
+		<h1>Developing a Plugin</h1>
+		<pre class="javascript">jQuery.fn.slideRemove = function() {
+	return this.slideUp("slow", function(){
+		$(this).remove();
+	});
+};
+$("li.remove").slideRemove();</pre>
+		<ul>
+			<li><button class="run">Run</button></li>
+			<li>A simple plugin that hides an element and then removes it.</li>
+			<li class="remove">(I'm going to be removed when run.)</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>What Makes a Plugin?</h1>
+		<ul>
+			<li>Most jQuery plugins are just adding in a new method to the jQuery set.</li>
+			<li>The methods need to return the jQuery set (likely 'this').</li>
+			<li>Can also add in new selectors.</li>
+		</ul>
+		<pre class="javascript">jQuery.expr[":"].unordered = function(elem) {
+  return elem.parentNode.nodeName.toLowerCase() === "ul";
+};</pre>
+	</div>
+	<div class="slide">
+		<h1>Build a Todo List</h1>
+		<ul>
+			<li>Take a plain (no JavaScript) todo list and make it nice and Ajax-y.</li>
+			<li><a href="http://ejohn.org/apps/workshop/todo/">http://ejohn.org/apps/workshop/todo/</a></li>
+			<li>Edit your code:<br><a href="http://ejohn.org/apps/workshop/todo/?action=edit">http://ejohn.org/apps/workshop/todo/?action=edit</a></li>
+			<li>Reset data:<br><a href="http://ejohn.org/apps/workshop/todo/?action=reset">http://ejohn.org/apps/workshop/todo/?action=reset</a></li>
+			<li>View final:<br><a href="http://ejohn.org/apps/workshop/todo/?action=done">http://ejohn.org/apps/workshop/todo/?action=done</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>jQuery UI</h1>
+		<ul>
+			<li>A complete set of themed, cross-browser, user interface components.</li>
+			<li>Drag, Drop, Sort, Select, Resize Accordion, Datepicker, Dialog, Slider, Tabs</li>
+			<li>New in 1.8: Button, Autocomplete</li>
+			<li>More info: <a href="http://ui-dev.jquery.com/">http://jqueryui.com/</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Themeroller</h1>
+		<ul>
+			<li>The themeing of UI components is completely customizable.</li>
+			<li>Themeroller gives you full control and you can even embed it with a bookmarklet.</li>
+			<li><a href="http://ui-dev.jquery.com/themeroller/">http://themeroller.com/</a></li>
+			<li><a href="http://ui-dev.jquery.com/themeroller/developertool/">http://jqueryui.com/themeroller/developertool/</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Build a Social Network</h1>
+		<ul>
+			<li>Take a plain (no JavaScript) social network and make it nice and Ajax-y.</li>
+			<li><a href="http://ejohn.org/apps/workshop/social/">http://ejohn.org/apps/workshop/social/</a></li>
+			<li>Edit your code:<br><a href="http://ejohn.org/apps/workshop/social/?action=edit">http://ejohn.org/apps/workshop/social/?action=edit</a></li>
+			<li>Reset data:<br><a href="http://ejohn.org/apps/workshop/social/?action=reset">http://ejohn.org/apps/workshop/social/?action=reset</a></li>
+			<li>View final:<br><a href="http://ejohn.org/apps/workshop/social/?action=done">http://ejohn.org/apps/workshop/social/?action=done</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>jQuery CDN</h1>
+		<pre class="html">&lt;script src='http://code.jquery.com/jquery.js'>&lt;/script></pre>
+		<ul>
+			<li>jQuery, Google, and Microsoft all host jQuery on their CDNs.</li>
+			<li>Automatically minified, gzipped, and geopositioned for performance.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Minified and Gzipped</h1>
+		<ul>
+			<li>The best way to transfer JavaScript.</li>
+			<li>Minification removes comments, whitespace, and makes other optimizations (Google Closure, YUIMin, and Packer).</li>
+			<li>Gzipping that output compresses the filesize even further.</li>
+			<li>jQuery goes from 150KB+ down to ~20KB.</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>More Information</h1>
+		<ul>
+			<li><a href="http://jquery.com/">http://jquery.com/</a></li>
+			<li>For Questions: <a href="http://forum.jquery.com/">http://forum.jquery.com/</a></li>
+			<li>API Docs: <a href="http://api.jquery.com/">http://api.jquery.com/</a></li>
+			<li>Updates: <a href="http://twitter.com/jquery">http://twitter.com/jquery</a></li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>jQuery Books</h1>
+		<ul>
+			<li>Learning jQuery 1.3 (and jQuery 1.4 Reference Guide)</li>
+			<li>jQuery in Action (2nd edition)</li>
+			<li>jQuery Cookbook (O'Reilly)</li>
+		</ul>
+	</div>
+	<img src="jquery_logo.png" class="logo"/>
 </body>
 </html>

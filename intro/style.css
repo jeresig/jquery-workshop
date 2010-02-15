@@ -3,6 +3,8 @@ html, body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
+	background: #222;
+	color: #FFF;
 }
 
 html, body, input {
@@ -17,19 +19,21 @@ div.slide {
 }
 
 div.slide h1 {
-	margin: 0;
-	padding: 0.5em;
+	margin: 0 0 0.5em 0;
+	padding: 15px 0 15px 36px;
+	background: #0848B8;
 }
 
 div.slide ul {
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 0 28px;
+	font-size: 36px;
 }
 
 div.slide li {
-	margin: 0.5em;
-	padding: 0 0.5em;
+	margin: 18px;
+	padding: 0;
 	line-height: 1.25em;
 }
 
@@ -37,11 +41,12 @@ pre {
 	font-family: Monaco, Courier New;
 	margin: 0 1em;
 	padding: 0.5em;
-	font-size: 0.8em;
+	font-size: 24px;
 }
 
-pre.javascript {
+pre.javascript, pre.html {
 	background: #000;
+	color: #fff;
 }
 
 pre.stocky {
@@ -49,10 +54,21 @@ pre.stocky {
 	float: left;
 }
 
+pre a {
+	text-decoration: none;
+}
+
 a {
-	color: black;
+	color: #FFF;
 }
 
 input[type=text] {
 	width: 400px;
+}
+
+img.logo {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100px;
 }
