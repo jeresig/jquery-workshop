@@ -1,0 +1,30 @@
+#game {
+	width: 600px;
+	height: 400px;
+	background: #000;
+	position: relative;
+	overflow: hidden;
+}
+
+.user {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0px;
+	left: 600px;
+	border: 2px solid green;
+}
+
+.user.hit {
+	border: 2px solid red;
+}
+
+.user img {
+	width: 100%;
+	height: 100%;
+}
+
+.user.lg {
+	width: 150px;
+	height: 150px;
+}

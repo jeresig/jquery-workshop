@@ -1,0 +1,355 @@
+<html>
+<head>
+  <title>Improve Your Web App with jQuery</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="recipes.css"/>
+  <script src="../js/jquery.js"></script>
+  <script src="jquery.chili.js"></script>
+  <script src="jquery.color.js"></script>
+  <script src="recipes.js"></script>
+  <script src="slideshow.js"></script>
+</head>
+<body>
+  <!--<a href="http://jquery.com/"><img src="jquery_logo.png" class="logo"/></a>-->
+  <div class="slide main">
+    <h1>Improve Your Web App with jQuery</h1>
+    <br/><br/><br/><img src="jquery_logo.png"/>
+  </div>
+  <div class="slide">
+    <h1>Techniques</h1>
+    <ul>
+			<li>Improve Performance</li>
+			<li>Improve Accessibility</li>
+			<li>Reduce Complexity</li>
+			<li>Simplify Design</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Improve Performance</h1>
+    <ul>
+      	<li>Event delegation</li>
+				<li>Fragment caching</li>
+				<li>CDNs and Gzipping</li>
+    </ul>
+  </div>
+
+  <div class="slide" id="live">
+    <h1>Event Delegation</h1>
+    <ul>
+      <li>Event delegation is an efficient way to watch for an event on a large number of elements.</li>
+      <li>Works by binding to a point farther up the DOM tree and watching for bubbling events.</li>
+      <li>jQuery has two ways to do event delgation: <code>.live()</code> (as a direct replacement for .bind()) and <code>.delegate()</code>.</li>
+      <li><strong>Works on all current, and future, elements.</strong></li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>.delegate()</h1>
+    <pre class="javascript">$("table").delegate("td", "hover", function(){
+  $(this).toggleClass("active");
+});</pre>
+    <ul>
+      <li>Added the delegate (and undelegate) methods in jQuery 1.4.2.</li>
+      <li>These allow you to easily listen for events from a particular context (the table, in this case).</li>
+    </ul>
+  </div>
+  <div class="slide" id="liveclick">
+    <h1>Live Events</h1>
+    <pre class="javascript run">$("a.menu").live("hover", function(){
+  $(this).next().toggle(200);
+  return false;
+});</pre>
+    <ul>
+      <li><button>Add Menu</button></li>
+      <li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+      <li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>
+    </ul>
+    <script>
+    jQuery("#liveclick button").click(function(){
+      jQuery("#liveclick > ul").append('<li><a href="" class="menu">Menu</a> <ul style="display:none;"><li>Item 1</li><li>Item 2</li></ul></li>');
+    });
+    </script>
+  </div>
+
+  <div class="slide">
+    <h1>Caching with Fragments</h1>
+    <pre class="javascript">$("&lt;li>&lt;a>&lt;/a>&lt;/li>");</pre>
+    <ul>
+      <li>It can be expensive converting that HTML into DOM nodes.</li>
+      <li>We can speed up inserting multiple versions if we cache the nodes.</li>
+      <li>This is where document fragments really help (we use them in jQuery).</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Document Fragments</h1>
+    <pre class="javascript">var div = document.createElement("div");
+div.innerHTML = "&lt;li>&lt;a>&lt;/a>&lt;/li>";
+var fragment = document.createDocumentFragment();
+while ( div.firstChild ) {
+  fragment.appendChild( div.firstChild );
+}</pre>
+    <ul>
+      <li>A document fragment is just a lightweight container that can hold some DOM nodes.</li>
+      <li>It makes it easy to store the nodes for later all while improving the performance of insertion.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Document Fragments</h1>
+    <pre class="javascript">someDiv.appendChild( fragment ); // one operation!</pre>
+    <ul>
+      <li>When you insert, or clone, a fragment all of its contents are automatically inserted or cloned.</li>
+      <li>This ends up being really fast, avoid having to insert nodes one-by-one.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>jQuery from a CDN</h1>
+    <pre class="html">&lt;script src='http://code.jquery.com/jquery.js'>&lt;/script></pre>
+    <ul>
+      <li>jQuery, Google, and Microsoft all host jQuery on their CDNs.</li>
+      <li>Automatically minified, gzipped, and geopositioned for performance.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Minified and Gzipped</h1>
+    <ul>
+      <li>The best way to transfer JavaScript.</li>
+      <li>Minification removes comments, whitespace, and makes other optimizations (Google Closure, YUIMin, and Packer).</li>
+      <li>Gzipping that output compresses the filesize even further.</li>
+      <li>jQuery goes from 150KB+ down to ~20KB.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Improve Accessibility</h1>
+    <ul>
+				<li>Unobtrusive scripting</li>
+				<li>Special Ajax loading</li>
+    </ul>
+  </div>
+
+	<div class="slide">
+		<h1>Unobtrusive Scripting</h1>
+		<pre class="javascript large">$("#somelink").click(function(){
+  return false; // stop the browser from visiting the link
+});</pre>
+		<ul>
+			<li>Turn a link or form that already works and layer on JavaScript enhancements.</li>
+			<li>jQuery makes this behavior very simple when working with events.</li>
+			<li>(No longer use non-functional links like '#' or 'javascript:void(0)'.)</li>
+		</ul>
+	</div>
+	<div class="slide">
+		<h1>Ready Event</h1>
+		<pre class="javascript large">$(document).ready(function(){
+	// Your jQuery code goes in here
+});</pre>
+		<ul>
+			<li>In order to traverse and manipulate the page we must wait until it's ready to be used.</li>
+			<li>jQuery has a ready event that fires the instant the DOM is ready to be worked with.</li>
+			<li>Stick all your jQuery code in a ready block, load it unobtrusively.</li>
+			<li><strong>No More Inline JavaScript!</strong></li>
+		</ul>
+	</div>
+	<div class="slide" id="load2">
+    <h1>Click and Load</h1>
+    <pre class="javascript run">$("a").click(function(){
+  $(this).next().load( this.href );
+  return false;
+});</pre>
+    <ul>
+      <li><a href="file.html">Click to visit</a> <div></div></li>
+    </ul>
+  </div>
+	<div class="slide">
+    <h1>Extra Header</h1>
+    <pre class="php">$_SERVER['HTTP_X_REQUESTED_WITH'];</pre>
+    <ul>
+      <li>jQuery passes along an additional header that you can use to tailor your content.</li>
+			<li>If the header exists, don't show the header/footer of the page to save bandwidth.</li>
+			<li><code>.load()</code> the contents right into your site!</li>
+    </ul>
+  </div>
+  <div class="slide" id="load3">
+    <h1>.load() page fragment</h1>
+    <pre class="javascript">$("div.load").load("file.html h2");</pre>
+    <ul>
+      <li><button class="run">Run</button></li>
+    </ul>
+    <div class="load">hello!</div>
+    <style>div.load { margin-left: 36px;}</style>
+  </div>
+
+  <div class="slide">
+    <h1>Reduce Complexity</h1>
+    <ul>
+				<li>jQuery reduces complexity by providing element-centric ways to attach and transmit information.</li>
+				<li>Data binding</li>
+				<li>Event namespacing</li>
+				<li>Custom events</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Data Storage</h1>
+    <pre class="javascript">$("div").data("test", 5);
+$("div").data("test") === 5;</pre>
+    <ul>
+      <li>jQuery has an API for invisibly storing data on DOM nodes.</li>
+      <li>You can add data to any element (using .data) and we'll store it in a central repository.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Internal Data Storage</h1>
+    <pre class="javascript">// Get all event handlers bound to an element
+$("div").data("events");</pre>
+    <ul>
+      <li>jQuery uses the data storage internally to keep track of all sorts of things.</li>
+      <li>We store all the event handlers, toggling information, hide/show state, and various other bits.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Removing Data</h1>
+    <pre class="javascript">// Remove all data bound to an element
+$("div").removeData();
+$("div").remove(); // also removes data</pre>
+    <ul>
+      <li>Additionally, we'll manage all garbage collection, after the element has been removed.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Data Events</h1>
+    <pre class="javascript">$("div").bind("getData.value", function(){
+  return myPlugin.realValue;
+});</pre>
+    <ul>
+      <li>We can also override the values retrieved or set on the data method by binding to getData and setData.</li>
+      <li>Returning a value will set (or return) a completely different result.</li>
+      <li>Very useful for plugins that want to override specific data behaviors.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Custom Events</h1>
+    <pre class="javascript">$("div").bind("myplugin", someFn);
+$("div").trigger("myplugin");</pre>
+    <ul>
+      <li>You can bind to any event, there is no restriction on what you can or can't bind to.</li>
+      <li>Naturally, some events are fired by the browser (click, focus, etc.)</li>
+      <li>Everything else needs to be manually triggered.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Event Namespaces</h1>
+    <pre class="javascript">$("div").bind("click.plugin", someFn);
+$("div").bind("focus.plugin", otherFn);
+$("div").unbind(".plugin");</pre>
+    <ul>
+      <li>When you bind event handler you can also give them a namespace.</li>
+      <li>This makes it easy to find later and easy to remove the handlers.</li>
+      <li>Saves you from having to keep track of where all your functions are being bound, since you can just remove them by name.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Events and Plugins</h1>
+    <pre class="javascript">$("div").bind("remove.pluginA", someFn);
+$("div").bind("remove.pluginB", otherFn);
+$("div").trigger("remove");</pre>
+    <ul>
+      <li>As it turns out, custom events are a great way for multiple pieces of code (such as plugins) to bind to the same functionality.</li>
+      <li>This creates a one to many relationship: You trigger one event but many handlers could be executed.</li>
+      <li>This is a very efficient means of creating complex applications.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>Special Events</h1>
+    <ul>
+      <li>More complex than regular custom events (custom events don't interact with the browser).</li>
+      <li>You can use special events to simulate other events.</li>
+      <li>We use it for: submit, change, mouseenter, mouseleave, focusin, focusout.</li>
+			<li>In 1.4.2 we added default special events (can be blocked with preventDefault).</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Focusin/Focusout</h1>
+    <pre class="javascript">if ( document.addEventListener ) {
+  jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+    jQuery.event.special[ fix ] = {
+      setup: function() {
+        this.addEventListener( orig, handler, true );
+      }, 
+      teardown: function() { 
+        this.removeEventListener( orig, handler, true );
+      }
+    };
+
+    function handler( e ) { 
+      e = jQuery.event.fix( e );
+      e.type = fix;
+      return jQuery.event.handle.call( this, e );
+    }
+  });
+}</pre>
+  </div>
+  <div class="slide">
+    <h1>Hotkeys</h1>
+    <pre class="javascript">$(document).bind("keydown", "ctrl+a", function(){
+  return false; // Prevent selecting all the text
+});</pre>
+		<ul>
+			<li>Example of a plugin that you can create using special events.</li>
+			<li><a href="http://github.com/jeresig/jquery.hotkeys">http://github.com/jeresig/jquery.hotkeys</a></li>
+  </div>
+
+  <div class="slide">
+    <h1>Simplify Design</h1>
+    <ul>
+      	<li>jQuery UI</li>
+				<li>Themeroller</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>jQuery UI</h1>
+    <ul>
+      <li>A complete set of themed, cross-browser, user interface components.</li>
+      <li>Drag, Drop, Sort, Select, Resize Accordion, Datepicker, Dialog, Slider, Tabs</li>
+      <li>New in 1.8: Button, Autocomplete</li>
+      <li>More info: <a href="http://ui-dev.jquery.com/">http://jqueryui.com/</a></li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h1>Themeroller</h1>
+    <ul>
+      <li>The themeing of UI components is completely customizable.</li>
+      <li>Themeroller gives you full control and you can even embed it with a bookmarklet.</li>
+      <li><a href="http://ui-dev.jquery.com/themeroller/">http://themeroller.com/</a></li>
+      <li><a href="http://ui-dev.jquery.com/themeroller/developertool/">http://jqueryui.com/themeroller/developertool/</a></li>
+    </ul>
+  </div>
+
+
+  <div class="slide">
+    <h1>What are we working on?</h1>
+    <ul>
+      <li>Ajax rewrite - much more extensible.</li>
+      <li>Dynamic script loading and dependency management.</li>
+      <li>Templating - make it easy to write templating plugins.</li>
+      <li>Mobile support - we'll test against all the major mobile browsers and guarantee support.</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h1>More Information</h1>
+    <ul>
+      <li><a href="http://jquery.com/">http://jquery.com/</a></li>
+      <li>For Questions: <a href="http://forum.jquery.com/">http://forum.jquery.com/</a></li>
+      <li>API Docs: <a href="http://api.jquery.com/">http://api.jquery.com/</a></li>
+      <li>Updates: <a href="http://twitter.com/jquery">http://twitter.com/jquery</a></li>
+    </ul>
+  </div>
+</body>
+</html>

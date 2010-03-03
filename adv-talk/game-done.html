@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Meetup Game</title>
+	<link rel="stylesheet" href="game.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="game.js"></script>
+	<script>
+		$(function(){
+			var score = 0, life = 100;
+			
+			$(".user").live("hit", function(){
+				var data = $(this).data();
+				data.hits++;
+				
+				if ( data.hits >= data.maxhits ) {
+					$(this).stop().detach();
+				} else {
+					$(this).addClass("hit");
+				}
+				
+				score += 100;
+				$("#score").text( score );
+			});
+			
+			$(".user").live("escape", function(){
+				var data = $(this).data();
+				
+				life -= data.maxhits * 3;
+				
+				if ( life < 0 ) {
+					life = 0;
+				}
+				
+				$("#life").text( life );
+				
+				if ( life <= 0 ) {
+					$("#stats").append(" <b class='kill'>You were killed by: " + data.user + "</b>");
+					$("#game").trigger("stop");
+				}
+				
+				$(this).detach();
+			});
+			
+			$("input").click(function(){
+				$("#game").trigger("start");
+			});
+			
+			$("#game").bind("start", function(){
+				score = 0;
+				life = 100;
+				$("#score").text( score );
+				$("#life").text( life );
+				
+				$("input").hide();
+				
+				$("strong.kill").fadeOut(1000, function(){
+					$(this).remove();
+				});
+			});
+			
+			$("#game").bind("stop", function(){
+				$("input").show();
+			});
+		});
+	</script>
+</head>
+<body>
+	<p id="stats"><input type="button" value="Start"/> Score: <strong id="score">0</strong> Life: <strong id="life">0</strong></p>
+	<div id="game"></div>
+</body>
+</html>
