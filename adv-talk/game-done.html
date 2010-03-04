@@ -9,12 +9,12 @@
 		$(function(){
 			var score = 0, life = 100;
 			
-			$(".user").live("hit", function(){
+			$("#game").delegate(".user", "hit", function(){
 				var data = $(this).data();
 				data.hits++;
 				
 				if ( data.hits >= data.maxhits ) {
-					$(this).stop().detach();
+					$(this).stop().remove();
 				} else {
 					$(this).addClass("hit");
 				}
@@ -23,7 +23,7 @@
 				$("#score").text( score );
 			});
 			
-			$(".user").live("escape", function(){
+			$("#game").delegate(".user", "escape", function(){
 				var data = $(this).data();
 				
 				life -= data.maxhits * 3;
@@ -39,11 +39,7 @@
 					$("#game").trigger("stop");
 				}
 				
-				$(this).detach();
-			});
-			
-			$("input").click(function(){
-				$("#game").trigger("start");
+				$(this).remove();
 			});
 			
 			$("#game").bind("start", function(){
@@ -61,6 +57,10 @@
 			
 			$("#game").bind("stop", function(){
 				$("input").show();
+			});
+
+			$("input").click(function(){
+				$("#game").trigger("start");
 			});
 		});
 	</script>
